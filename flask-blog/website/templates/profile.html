@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block title %}User Profile{% endblock %} {% block
+content %}
+<link rel="stylesheet" href="../static/profile.css" />
+<p>
+  <label for="email">Email:</label>
+  <input type="email" value="{{ user.email }}" disabled />
+</p>
+
+<p>
+  <label for="username">Username:</label>
+  <input type="text" value="{{ user.username }}" disabled />
+</p>
+
+<p>
+  <label for="date_created">Date Created:</label>
+  <input type="text" value="{{ user.date_created }}" disabled />
+</p>
+
+<p>
+  <label for="role">Role:</label>
+  <input type="text" value="{{ user.role }}" disabled />
+</p>
+
+<p>
+  <label for="post">Number of Posts:</label>
+  <input type="text" value="{{ user.posts | length }}" disabled />
+</p>
+
+<p>
+  <label for="com">Number of Comments:</label>
+  <input type="text" value="{{ user.comments | length }}" disabled />
+</p>
+
+<form
+  id="deleteUserForm"
+  action="{{ url_for('views.delete_profile', user_id=user.id) }}"
+  method="post"
+>
+  <input
+    type="submit"
+    value="Delete User"
+    onclick="return confirm('Are you sure you want to delete this user?')"
+  />
+</form>
+
+<a href="{{ url_for('views.change_password') }}">
+  <button>Change Password</button>
+</a>
+
+{% endblock %}
